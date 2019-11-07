@@ -5,7 +5,7 @@ This fork is optimized for low spec handheld retro game consoles, which usually 
 1. Resolution changed from 480x480 (1:1) to 320x240 (4:3)
 2. Reduced sizes of image assets by 50%
 3. Removed `bird3.png` which is identical to `bird1.png`
-4. Reduced number of fonts.
+4. Reduced number of fonts
 
 [Flappy Bird](https://en.wikipedia.org/wiki/Flappy_Bird) re-implementation using [ChaiLove](https://github.com/RobLoach/ChaiLove).
 
@@ -20,18 +20,18 @@ See the [video demo](https://www.youtube.com/watch?v=RLVwTh6qDFI&t=29s) to see F
 2. Install the [ChaiLove](https://github.com/robloach/chailove) core through RetroArch
     - *Online Updater* → *Core Updater* → *ChaiLove*
 
-3. Download the latest [ChaiLove Floppy Bird release](https://github.com/RobLoach/ChaiLove-FloppyBird/releases)
-    - *Online Updater* → *Content Downloader* → *ChaiLove* → *FloppyBird.chailove*
+3. Download the latest [ChaiLove Floppy Bird release](https://github.com/guoyunhe/ChaiLove-FloppyBirdLite/releases)
+    - *Online Updater* → *Content Downloader* → *ChaiLove* → *FloppyBirdLite.chailove*
 
 ## Play
 
-1. Load `FloppyBird.chailove` through RetroArch...
+1. Load `FloppyBirdLite.chailove` through RetroArch...
     - *Load Content* → *Downloads* → *FloppyBirdLite.chailove*
 
 2. Alternatively, it is possible to run it through the command line:
 
     ```
-    retroarch -L chailove_libretro.so FloppyBird.chailove
+    retroarch -L chailove_libretro.so FloppyBirdLite.chailove
     ```
 
 ## Development
