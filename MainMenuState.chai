@@ -2,8 +2,8 @@ class MainMenuState {
 
 	def MainMenuState() {
 		// TODO(RobLoach): Fix the font
-		this.description = "PRESS ANZ BUTTON"
-		this.credits = "BZ ROB LOACH"
+		this.description = "PRESS ANY BUTTON"
+		this.credits = "BY ROB LOACH"
 		this.font := assets["font-pixel"]
 		this.deltaCounter = 0.0f
 		this.logo := assets["logo"]
@@ -24,12 +24,12 @@ class MainMenuState {
 		// Logo
 		var ypos = love.graphics.getHeight() / 5 + 10 * sin(this.deltaCounter * 2)
 		love.graphics.draw(this.logo, love.graphics.getWidth() / 2 - this.logo.getWidth() / 2, ypos)
-	
+
 		// Credit
 		love.graphics.setFont(this.font)
 		ypos = love.graphics.getHeight() / 5 + this.textheight * 7 + 5 * sin(this.deltaCounter * 2)
 		love.graphics.print(this.credits, love.graphics.getWidth() / 2 - this.creditswidth / 2, ypos)
-		
+
 		if (this.pressAnyKeyTimer <= 0.0f) {
 			// Press Any Key
 			ypos = love.graphics.getHeight() / 5 + this.textheight * 12 + 2 * sin(this.deltaCounter * 2)

@@ -1,8 +1,11 @@
 # ChaiLove: Floppy Bird Lite
 
-This fork reduced the graphic size from 480p to 240p. It is made for low spec handheld retro game consoles.
+This fork is optimized for low spec handheld retro game consoles, which usually use 320x240 screen.
 
-----
+1. Resolution changed from 480x480 (1:1) to 320x240 (4:3)
+2. Reduced sizes of image assets by 50%
+3. Removed `bird3.png` which is identical to `bird1.png`
+4. Reduced number of fonts.
 
 [Flappy Bird](https://en.wikipedia.org/wiki/Flappy_Bird) re-implementation using [ChaiLove](https://github.com/RobLoach/ChaiLove).
 
@@ -23,7 +26,7 @@ See the [video demo](https://www.youtube.com/watch?v=RLVwTh6qDFI&t=29s) to see F
 ## Play
 
 1. Load `FloppyBird.chailove` through RetroArch...
-    - *Load Content* → *Downloads* → *FloppyBird.chailove*
+    - *Load Content* → *Downloads* → *FloppyBirdLite.chailove*
 
 2. Alternatively, it is possible to run it through the command line:
 
