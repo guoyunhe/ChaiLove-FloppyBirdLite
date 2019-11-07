@@ -1,4 +1,8 @@
-# ChaiLove: Floppy Bird
+# ChaiLove: Floppy Bird Lite
+
+This fork reduced the graphic size from 480p to 240p. It is made for low spec handheld retro game consoles.
+
+----
 
 [Flappy Bird](https://en.wikipedia.org/wiki/Flappy_Bird) re-implementation using [ChaiLove](https://github.com/RobLoach/ChaiLove).
 
