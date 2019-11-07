@@ -11,9 +11,9 @@ global pipes = List()
 global pipetimer = 0.0f
 global pipetimerCountdown = 1.4f
 global score = 0
-global openingSizeStart = 60.0f
+global openingSizeStart = 30.0f
 global openingSize = openingSizeStart
-global openingSizeRangeStart = 10.0f
+global openingSizeRangeStart = 5.0f
 global openingSizeRange = openingSizeRangeStart
 global flapTimer = 0.0f
 global flapTimerMax = 0.10f
@@ -32,8 +32,8 @@ def conf(t) {
 	t.identity = "floppybird"
 	t.version = "0.28.0" // Version of ChaiLove
 	t.window.title = "Floppy Bird";
-	t.window.width = 480;
-	t.window.height = 480;
+	t.window.width = 320;
+	t.window.height = 240;
 }
 
 /**
@@ -85,7 +85,7 @@ def reset() {
  */
 def addPipe() {
 	// Find out where the pipes should be positioned.
-	var pipeTubeSize = 26
+	var pipeTubeSize = 13
 	var opening = love.math.random(pipeTubeSize + openingSize, landTop - pipeTubeSize - openingSize)
 	var openSize = openingSize + love.math.random(-openingSizeRange, openingSizeRange)
 
@@ -126,15 +126,15 @@ def draw() {
 		love.graphics.setFont(assets["font-big"])
 		var scoretext = to_string(score)
 		var scorewidth = assets["font-big"].getWidth(scoretext)
-		love.graphics.print(to_string(score), love.graphics.getWidth() / 2 - scorewidth / 2, 30)
+		love.graphics.print(to_string(score), love.graphics.getWidth() / 2 - scorewidth / 2, 15)
 	}
 
 	// FPS
 	love.graphics.setFont(assets["font-pixel"])
-	love.graphics.print("FPS " + to_string(love.timer.getFPS()), 10, love.graphics.getHeight() - 20)
+	love.graphics.print("FPS " + to_string(love.timer.getFPS()), 5, love.graphics.getHeight() - 10)
 
 	// Highscore
-	love.graphics.print("BEST " + to_string(highscore), love.graphics.getWidth() - 150, love.graphics.getHeight() - 20)
+	love.graphics.print("BEST " + to_string(highscore), love.graphics.getWidth() - 75, love.graphics.getHeight() - 10)
 }
 
 /**
