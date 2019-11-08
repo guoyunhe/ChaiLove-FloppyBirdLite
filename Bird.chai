@@ -17,12 +17,12 @@ class Bird {
 	}
 
 	def Bird() {
-		this.collisionPadding = 5
-		this.x = 53.0f
-		this.speed = 100.0f
-		this.y = 50.0f
-		this.yspeed = 0.0f
-		this.ygravity = 500.0f
+		this.collisionPadding = 2
+		this.x = 53
+		this.speed = 100
+		this.y = 50
+		this.yspeed = 0
+		this.ygravity = 500
 		this.animationslide = 2
 		this.animtimer = 0.0f
 
@@ -32,30 +32,11 @@ class Bird {
 			this.img.push_back_ref(love.graphics.newImage("assets/bird" + to_string(imgId) + ".png"))
 		}
 		this.width = this.img[0].getWidth()
-		this.height = this.img[0].getHeight() / 4
-
-		this.ox = this.img[0].getWidth() / 2.0f
-		this.oy = this.img[0].getWidth() / 2.0f
-	}
-
-	def left() {
-		return this.x - this.img[0].getWidth() / 2.0f
-	}
-
-	def right() {
-		return this.x + this.img[0].getWidth() / 2.0f
-	}
-
-	def top() {
-		return this.y - this.img[0].getHeight() / 2.0f
-	}
-
-	def bottom() {
-		return this.y + this.img[0].getHeight() / 2.0f
+		this.height = this.img[0].getHeight()
 	}
 
 	def draw() {
-		love.graphics.draw(this.img[this.animationslide], this.left(), this.top())
+		love.graphics.draw(this.img[this.animationslide], this.x, this.y)
 	}
 
 	def update(delta) {
@@ -77,12 +58,13 @@ class Bird {
 		this.yspeed += this.ygravity * delta
 		this.y += this.yspeed * delta
 
-		if (this.bottom() - this.collisionPadding > landTop) {
+		if (this.y + this.height > landTop) {
+			this.y = landTop - this.height
 			assets["die"].play()
 			return false
 		}
 
-		if (this.yspeed < 0 && this.top() < 0) {
+		if (this.yspeed < 0 && this.y < 0) {
 			this.yspeed = 0
 			this.y = this.collisionPadding
 		}
@@ -91,7 +73,7 @@ class Bird {
 	}
 
 	def flap(mute) {
-		this.yspeed = -140.0f
+		this.yspeed = -140
 		this.animationslide = 0
 		if (mute == false) {
 			assets["wing"].play()
@@ -99,7 +81,7 @@ class Bird {
 	}
 
 	def reset() {
-		this.y = love.graphics.getHeight() / 3
+		this.y = windowHeight / 3
 		this.flap(true)
 	}
 }

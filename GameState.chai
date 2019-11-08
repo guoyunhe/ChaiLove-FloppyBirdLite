@@ -18,6 +18,8 @@ class GameState {
 	}
 
 	def update(delta) {
+		var landStep = bird.speed * delta
+		var skyStep = landStep / 2
 		// Check if the game is paused.
 		if (this.pause) {
 			return
@@ -40,7 +42,7 @@ class GameState {
 			}
 
 			// Update will return false if we are to remove it.
-			if (pipe.update(delta, bird.speed) == false) {
+			if (pipe.update(landStep) == false) {
 				removePipe = removePipe + 1
 			}
 
@@ -64,14 +66,14 @@ class GameState {
 			addPipe()
 		}
 
-		landX += bird.speed * delta
-		if (landX >= assets["land"].getWidth()) {
-			landX -= assets["land"].getWidth()
+		landX += landStep
+		if (landX >= landWidth) {
+			landX -= landWidth
 		}
 
-		skyX += bird.speed / 2 * delta
-		if (skyX >= assets["sky"].getWidth()) {
-			skyX -= assets["sky"].getWidth()
+		skyX += skyStep
+		if (skyX >= skyWidth) {
+			skyX -= skyWidth
 		}
 
 		if (!isMusicPlaying()) {
@@ -95,7 +97,7 @@ class GameState {
 
 	def draw() {
 		if (this.pause) {
-			love.graphics.print("PAUSE", love.graphics.getWidth() / 2 - this.pauseWidth / 2, love.graphics.getHeight() / 2 - this.pauseHeight)
+			love.graphics.print("PAUSE", windowWidth / 2 - this.pauseWidth / 2, windowHeight / 2 - this.pauseHeight)
 		}
 	}
 

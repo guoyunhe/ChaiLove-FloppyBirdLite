@@ -18,20 +18,26 @@ global openingSizeRange = openingSizeRangeStart
 global flapTimer = 0.0f
 global flapTimerMax = 0.10f
 global landTop = 0
-global landX = 0.0f
-global skyX = 0.0f
+global landX = 0
+global landWidth = 0
+global landHeight = 0
+global skyX = 0
+global skyWidth = 0
+global skyHeight = 0
 global highscore = 0
 global states
 global cheatNoClip = false
 global cheatFly = false
+global windowWidth = 320
+global windowHeight = 240
 
 /**
  * Configuration for ChaiLove.
  */
 def conf(t) {
-	t.identity = "floppybird"
+	t.identity = "floppybirdlite"
 	t.version = "0.28.0" // Version of ChaiLove
-	t.window.title = "Floppy Bird";
+	t.window.title = "Floppy Bird Lite";
 	t.window.width = 320;
 	t.window.height = 240;
 }
@@ -46,15 +52,17 @@ def load() {
 	// Set up the background.
 	love.graphics.setBackgroundColor(78, 192, 202)
 
-	// Make filtering use the nearest.
-	love.graphics.setDefaultFilter("nearest")
-
 	// Load all asset files.
 	love.filesystem.load("assets.chai")
 
 	// Construct the asxsets.
 	bird = Bird()
-	landTop = love.graphics.getHeight() - assets["land"].getHeight()
+
+	landWidth = assets["land"].getWidth()
+	landHeight = assets["land"].getHeight()
+	landTop = windowHeight - landHeight
+	skyWidth = assets["sky"].getWidth()
+	skyHeight = assets["sky"].getHeight()
 
 	// Set up the Game States
 	states.add("menu", MainMenuState())
@@ -77,7 +85,7 @@ def reset() {
 	openingSizeRange = openingSizeRangeStart
 	pipetimer = 0.0f
 	flapTimer = 0.0f
-	landX = 0.0f
+	landX = 0
 }
 
 /**
@@ -100,13 +108,13 @@ def addPipe() {
 def draw() {
 	// Draw the background (land and sky).
 	var land := assets["land"]
-	for (var i = 0; (i - 1) * land.getWidth() <= love.graphics.getWidth(); ++i) {
-		love.graphics.draw(land, i * land.getWidth() - landX, love.graphics.getHeight() - land.getHeight())
+	for (var i = 0; (i - 1) * landWidth <= windowWidth; ++i) {
+		love.graphics.draw(land, i * landWidth - landX, windowHeight - land.getHeight())
 	}
 	if (love.config.options["highquality"]) {
 		var sky := assets["sky"]
-		for (var i = 0; (i - 1) * sky.getWidth() <= love.graphics.getWidth(); ++i) {
-			love.graphics.draw(sky, i * sky.getWidth() - skyX, landTop - sky.getHeight())
+		for (var i = 0; (i - 1) * skyWidth <= windowWidth; ++i) {
+			love.graphics.draw(sky, i * skyWidth - skyX, landTop - sky.getHeight())
 		}
 	}
 
@@ -126,15 +134,15 @@ def draw() {
 		love.graphics.setFont(assets["font-big"])
 		var scoretext = to_string(score)
 		var scorewidth = assets["font-big"].getWidth(scoretext)
-		love.graphics.print(to_string(score), love.graphics.getWidth() / 2 - scorewidth / 2, 15)
+		love.graphics.print(to_string(score), windowWidth / 2 - scorewidth / 2, 15)
 	}
 
 	// FPS
 	love.graphics.setFont(assets["font-pixel"])
-	love.graphics.print("FPS " + to_string(love.timer.getFPS()), 5, love.graphics.getHeight() - 10)
+	love.graphics.print("FPS " + to_string(love.timer.getFPS()), 5, windowHeight - 10)
 
 	// Highscore
-	love.graphics.print("BEST " + to_string(highscore), love.graphics.getWidth() - 75, love.graphics.getHeight() - 10)
+	love.graphics.print("BEST " + to_string(highscore), windowWidth - 75, windowHeight - 10)
 }
 
 /**

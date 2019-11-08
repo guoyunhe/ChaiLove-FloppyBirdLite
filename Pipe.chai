@@ -16,7 +16,7 @@ class Pipe {
 			"quadheight": this.sourcequad.height
 		]
 	}
-	
+
 	def deserialize(obj) {
 		this.x = obj["x"]
 		this.y = obj["y"]
@@ -38,8 +38,7 @@ class Pipe {
 		this.scored = false
 		this.opening = opening
 		this.openingHeight = openingHeight
-		// Make sure the position is of floating point.
-		this.x = love.graphics.getWidth() * 1.0f
+		this.x = windowWidth
 		this.top = top
 		this.sourcequad = Quad()
 
@@ -69,45 +68,12 @@ class Pipe {
 		love.graphics.draw(this.img, this.sourcequad, this.x, this.y)
 	}
 
-	def update(delta, speed) {
-		this.x -= delta * speed
-		if (this.x + this.width < 0) {
-			return false
-		}
-
-		// Difficulty level
-		/*
-		if (score >= 10) {
-			if (this.top) {
-				this.height += delta * score / 3.0f
-				this.sourcequad.height = this.height
-				this.sourcequad.y = this.img.getHeight() - this.height
-			}
-			else {
-				this.y -= delta * score / 3.0f
-				this.height = landTop - this.y + 1
-				this.sourcequad.height = this.height
-			}
-		}
-		*/
-
-		return true
+	def update(step) {
+		this.x -= step
+		return this.x + this.width > 0
 	}
 
 	def collide(bird) {
-		if (cheatNoClip) {
-			return false
-		}
-
-		if (this.x < bird.right() - bird.collisionPadding) {
-			if (this.x + this.width > bird.left() + bird.collisionPadding) {
-				if (this.y < bird.bottom() - bird.collisionPadding) {
-					if (this.y + this.height > bird.top() + bird.collisionPadding) {
-						return true
-					}
-				}
-			}
-		}
-		return false
+		return (this.x < bird.x + bird.width - bird.collisionPadding) && (this.x + this.width > bird.x + bird.collisionPadding) && (this.y < bird.y + bird.height - bird.collisionPadding) && (this.y + this.height > bird.y + bird.collisionPadding)
 	}
 }
