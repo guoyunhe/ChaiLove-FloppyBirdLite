@@ -55,13 +55,7 @@ class Bird {
 	}
 
 	def draw() {
-		if (love.config.options["highquality"]) {
-			var angle = atan2(this.yspeed, this.speed) * -20
-			love.graphics.draw(this.img[this.animationslide], this.x, this.y, love.math.rad(angle), 1.0f, 1.0f, this.ox, this.oy)
-		}
-		else {
-			love.graphics.draw(this.img[this.animationslide], this.left(), this.top())
-		}
+		love.graphics.draw(this.img[this.animationslide], this.left(), this.top())
 	}
 
 	def update(delta) {
