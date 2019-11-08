@@ -6,6 +6,7 @@ This fork is optimized for low spec handheld retro game consoles, which usually 
 2. Reduced sizes of image assets by 50%
 3. Removed `bird3.png` which is identical to `bird1.png`
 4. Reduced number of fonts
+5. Removed text animation
 
 [Flappy Bird](https://en.wikipedia.org/wiki/Flappy_Bird) re-implementation using [ChaiLove](https://github.com/RobLoach/ChaiLove).
 
