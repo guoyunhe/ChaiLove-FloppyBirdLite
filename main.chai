@@ -93,7 +93,7 @@ def reset() {
  */
 def addPipe() {
 	// Find out where the pipes should be positioned.
-	var pipeTubeSize = 13
+	var pipeTubeSize = 12
 	var opening = love.math.random(pipeTubeSize + openingSize, landTop - pipeTubeSize - openingSize)
 	var openSize = openingSize + love.math.random(-openingSizeRange, openingSizeRange)
 
@@ -188,6 +188,7 @@ def isMusicPlaying() {
  * Callback; Save the current state as a JSON string.
  */
 def savestate() {
+	consle.log("save state")
 	var pipeInfo = []
 	for (pipe : pipes) {
 		pipeInfo.push_back(pipe.serialize())

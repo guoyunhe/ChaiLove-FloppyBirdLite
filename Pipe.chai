@@ -50,7 +50,7 @@ class Pipe {
 			this.sourcequad.x = 0
 			this.sourcequad.y = this.img.getHeight() - this.height
 			this.sourcequad.width = this.img.getWidth()
-			this.sourcequad.height = this.height
+			this.sourcequad.height = this.height + 1
 		}
 		else {
 			this.y = opening + this.openingHeight
@@ -60,7 +60,7 @@ class Pipe {
 			this.sourcequad.x = 0
 			this.sourcequad.y = 0
 			this.sourcequad.width = this.img.getWidth()
-			this.sourcequad.height = this.height
+			this.sourcequad.height = this.height + 1
 		}
 	}
 
